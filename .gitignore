@@ -14,5 +14,9 @@ __pycache__/
 .DS_Store
 
 # Project folders you do NOT want on GitHub
-data/
-outputs/
+data/*
+!data/cbsd_daily_dashboard_2022_01.csv
+!data/cbsd_station_trips_sample.csv
+outputs/cbsd_kepler_trips_configured.html
+
+outputs/cbsd_kepler_trips_configured.html
