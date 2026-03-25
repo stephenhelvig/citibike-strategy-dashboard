@@ -307,14 +307,14 @@ elif page == "High-volume trip corridors":
         """
     )
 
-    map_path = PROJECT_ROOT / "outputs" / "cbsd_kepler_trips_top100_configured.html"
+    top_trips_map_path = OUTPUTS_DIR / "cbsd_kepler_trips_top100_configured.html"
 
-    with open(map_path, "r", encoding="utf-8") as f:
-        map_html = f.read()
+    with open(top_trips_map_path, "r", encoding="utf-8") as f:
+        top_trips_map_html = f.read()
 
-    trips_embed = f"""
+    top_trips_embed = f"""
         <div style="width: 100%; min-width: 100%;">
-          {map_html}
+          {top_trips_map_html}
         </div>
         <script>
           setTimeout(function() {{
@@ -326,7 +326,7 @@ elif page == "High-volume trip corridors":
         </script>
         """
 
-    components.html(map_html, height=900, scrolling=True)
+    components.html(top_trips_embed, height=900, scrolling=True)
 
     st.markdown("### Key takeaway")
     st.markdown(
