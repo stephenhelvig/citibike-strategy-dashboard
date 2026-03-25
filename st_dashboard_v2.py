@@ -51,17 +51,14 @@ if page == "Intro page":
 
     st.markdown(
         """
-        This dashboard was created to help explain where Citi Bike may be experiencing
-        supply pressure and what factors appear to be driving that demand.
+        This dashboard was built to identify where Citi Bike may be experiencing supply pressure and what patterns appear to be driving that demand.
         """
     )
 
     st.markdown(
         """
-        A key concern for operations is that bikes may not always be available where and
-        when riders need them most. This analysis looks at demand patterns across time,
-        weather conditions, and station usage to identify where supply planning may need
-        to be more targeted.
+        The analysis focuses on ridership over time, weather conditions, station usage, and trip corridors to highlight where bike availability and operational
+        planning may need to be more targeted.
         """
     )
 
