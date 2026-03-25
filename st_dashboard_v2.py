@@ -62,10 +62,10 @@ if page == "Intro page":
         """
     )
 
-    st.markdown("- **Weather and seasonal demand:** shows how ridership changes alongside temperature")
-    st.markdown("- **Most popular stations:** highlights the busiest start stations with seasonal filtering")
-    st.markdown("- **High-volume trip corridors:** adds geographic context to where demand is concentrated")
-    st.markdown("- **Recommendations:** summarizes the main business takeaways and next steps")
+    st.markdown("- **Weather and seasonal demand:** shows how ridership changes over time and alongside temperature")
+    st.markdown("- **Most popular stations:** highlights how demand is concentrated across start stations and where supply pressure may be greatest")
+    st.markdown("- **High-volume trip corridors:** maps the 100 most repeated aggregated routes to show where movement is most concentrated")
+    st.markdown("- **Recommendations:** summarizes the key business takeaways and operational next steps")
 
     intro_image = Image.open("CitiBike1.jpg")
     st.image(intro_image)
@@ -76,6 +76,12 @@ if page == "Intro page":
 
 elif page == "Weather and seasonal demand":
     st.header("Weather and seasonal demand")
+
+    st.markdown(
+        """
+        This view compares daily ridership with average daily temperature to show how seasonal weather patterns align with Citi Bike demand.
+        """
+    )
 
     fig_line = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -115,9 +121,8 @@ elif page == "Weather and seasonal demand":
 
     st.markdown(
         """
-        Ridership generally rises and falls alongside temperature across the year.
-        This suggests that demand pressure is seasonal, with the strongest usage
-        occurring during warmer months and lower usage during winter.
+        Ridership rises and falls broadly alongside temperature across the year, indicating that demand pressure is strongly seasonal. Citi Bike should expect the
+        greatest supply strain during warmer months, while winter brings a clear drop in overall usage.
         """
     )
 
@@ -183,17 +188,12 @@ elif page == "Most popular start stations":
 
         st.markdown(
             """
-            Demand is meaningfully uneven across the Citi Bike network. The top 50% of
-            start stations account for about 90% of sampled trips, which suggests that
-            most ridership flows through a smaller, higher-volume half of the station network.
+            Demand is highly uneven across the Citi Bike network. In this sample, the top 50% of start stations account for about 90% of trips, indicating that most 
+            ridership is concentrated in a smaller, higher-volume share of stations.
             """
         )
 
-        st.caption(
-            "KPIs and bar chart use the dashboard sample. Embedded maps were created separately from the full dataset."
-        )
-
-        st.markdown("### Higher-volume vs lower-volume stations")
+        st.markdown("### Higher-volume vs lower-volume station distribution")
 
         stations_map_path = OUTPUTS_DIR / "cbsd_kepler_stations_configured.html"
 
@@ -214,7 +214,7 @@ elif page == "Most popular start stations":
         </script>
         """
         st.caption("Map colors compare higher-volume and lower-volume stations. Hover for station name and trip count.")
-        # st.caption("If the map does not fully stretch on first load, resizing the browser window will usually correct the display.")
+        
         components.html(stations_embed, height=900, scrolling=True)
 
         st.markdown(
@@ -251,7 +251,7 @@ elif page == "Most popular start stations":
         """
         
         st.caption("Point size reflects trip volume among the top 20 start stations.")
-        # st.caption("If the map does not fully stretch on first load, resizing the browser window will usually correct the display.")
+        
         components.html(top20_embed, height=850, scrolling=True)
 
         st.markdown(
@@ -283,12 +283,14 @@ elif page == "Most popular start stations":
 
         st.markdown(
             """
-            This ranking provides a more detailed view of the busiest start stations in the
-            selected season(s). These stations are the clearest candidates for closer
-            monitoring, faster rebalancing, and stronger bike availability planning.
+            This ranking makes it easier to compare the busiest start stations directly and identify which locations may deserve the highest priority for monitoring, 
+            rebalancing, and bike availability planning.
             """
         )
 
+        st.caption(
+            "Note: KPI and bar chart summaries are based on the dashboard sample, while embedded maps were exported separately for geographic visualization."
+        )
 
 # -----------------------------
 # High-volume trip corridors
@@ -305,12 +307,24 @@ elif page == "High-volume trip corridors":
         """
     )
 
-    st.caption("*Map filtered to show only the highest-volume trip corridors.")
-
     map_path = PROJECT_ROOT / "outputs" / "cbsd_kepler_trips_top100_configured.html"
 
     with open(map_path, "r", encoding="utf-8") as f:
         map_html = f.read()
+
+    map_path = f"""
+        <div style="width: 100%; min-width: 100%;">
+          {cbsd_kepler_trips_top100_configured.html}
+        </div>
+        <script>
+          setTimeout(function() {{
+            window.dispatchEvent(new Event('resize'));
+          }}, 300);
+          setTimeout(function() {{
+            window.dispatchEvent(new Event('resize'));
+          }}, 1000);
+        </script>
+        """
 
     components.html(map_html, height=900, scrolling=True)
 
