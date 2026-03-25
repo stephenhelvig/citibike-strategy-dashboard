@@ -312,9 +312,9 @@ elif page == "High-volume trip corridors":
     with open(map_path, "r", encoding="utf-8") as f:
         map_html = f.read()
 
-    map_path = f"""
+    trips_embed = f"""
         <div style="width: 100%; min-width: 100%;">
-          {cbsd_kepler_trips_top100_configured.html}
+          {map_html}
         </div>
         <script>
           setTimeout(function() {{
