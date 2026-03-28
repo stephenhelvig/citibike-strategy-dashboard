@@ -65,7 +65,7 @@ if page == "Intro page":
     st.markdown("- **Weather and seasonal demand:** shows how ridership changes over time and alongside temperature")
     st.markdown("- **Most popular stations:** highlights how demand is concentrated across start stations and where supply pressure may be greatest")
     st.markdown("- **High-volume trip corridors:** maps the 100 most repeated aggregated routes to show where movement is most concentrated")
-    st.markdown("- **Recommendations:** summarizes the key business takeaways and operational next steps")
+    st.markdown("- **Recommendations:** summarizes the main operational takeaways and areas for follow-up analysis")
 
     intro_image = Image.open("CitiBike1.jpg")
     st.image(intro_image)
@@ -121,8 +121,8 @@ elif page == "Weather and seasonal demand":
 
     st.markdown(
         """
-        Ridership rises and falls broadly alongside temperature across the year, indicating that demand pressure is strongly seasonal. Citi Bike should expect the
-        greatest supply strain during warmer months, while winter brings a clear drop in overall usage.
+        Ridership rises and falls broadly alongside temperature across the year, which suggests that Citi Bike demand is strongly seasonal. Usage is highest during warmer months 
+        and noticeably lower during winter, which may have implications for bike availability, rebalancing, and seasonal operations planning.
         """
     )
 
@@ -188,8 +188,8 @@ elif page == "Most popular start stations":
 
         st.markdown(
             """
-            Demand is highly uneven across the Citi Bike network. In this sample, the top 50% of start stations account for about 90% of trips, indicating that most 
-            ridership is concentrated in a smaller, higher-volume share of stations.
+            Demand is clearly uneven across the Citi Bike network. The top 50% of start stations account for about 90% of trips, 
+            which suggests that some parts of the network are seeing much heavier demand than others.
             """
         )
 
@@ -219,13 +219,10 @@ elif page == "Most popular start stations":
 
         st.markdown(
             """
-            This map compares higher-volume and lower-volume start stations across the network.
-            The higher-volume half appears more concentrated in Citi Bike’s core service area,
-            while lower-volume stations are more dispersed across the broader coverage area.
-            Together, these patterns suggest that supply and inventory management may be a more
-            immediate operational priority than broad station expansion. At the same time, some
-            higher-volume stations near the edges of current coverage may point to targeted
-            expansion opportunities in the future.
+            This map shows a clear geographic pattern in station usage. The higher-volume half of stations is located mostly in Manhattan, 
+            then Brooklyn, with only a few in Queens and very few in the Bronx. Most of the lower-volume half sits outside Manhattan. 
+            The bulk of higher-volume station activity shown here is in Manhattan rather than evenly distributed across the network. 
+            This view shows where activity is concentrated, but not why, so it is most useful here as a guide to where closer operational attention may be needed.
             """
         )
 
@@ -256,10 +253,8 @@ elif page == "Most popular start stations":
 
         st.markdown(
             """
-            This map highlights the 20 busiest start stations, with point size reflecting
-            trip volume. It helps identify the specific locations most likely to require
-            closer monitoring for bike availability, faster rebalancing, and stronger
-            supply planning during periods of peak demand.
+            This map highlights the 20 busiest start stations, with point size reflecting trip volume. It helps identify the specific locations 
+            most likely to require closer monitoring for bike availability, faster rebalancing, and stronger supply planning during peak demand periods.
             """
         )
 
@@ -283,8 +278,9 @@ elif page == "Most popular start stations":
 
         st.markdown(
             """
-            This ranking makes it easier to compare the busiest start stations directly and identify which locations may deserve the highest priority for monitoring, 
-            rebalancing, and bike availability planning.
+            This ranking provides a closer look at the busiest start stations in the selected season(s). It helps compare how the top stations 
+            shift across the year and which locations remain consistently important candidates for closer monitoring, faster rebalancing, 
+            and stronger bike availability planning.
             """
         )
 
@@ -301,9 +297,8 @@ elif page == "High-volume trip corridors":
 
     st.markdown(
         """
-        This map highlights the strongest trip corridors in the Citi Bike network.
-        It is filtered to show only the highest-volume route activity so that the
-        most concentrated patterns are easier to see.
+        This map highlights the most repeated aggregated trip corridors in the Citi Bike network. It is filtered to focus on the 
+        highest-volume route activity so that the most concentrated movement patterns are easier to see.
         """
     )
 
@@ -331,22 +326,19 @@ elif page == "High-volume trip corridors":
     st.markdown("### Key takeaway")
     st.markdown(
         """
-        The heaviest trip activity is concentrated in a relatively small number of
-        Manhattan-centered corridors rather than being spread evenly across the full
-        network. This supports the broader finding that Citi Bike demand is geographically
-        concentrated, which suggests supply pressure may be better addressed through
-        targeted rebalancing and station-level planning in the busiest areas.
+        The strongest trip activity appears in a relatively small number of repeated corridors, many of them in and around Manhattan. 
+        This reinforces the broader finding that usage is not spread evenly across the network.
         """
     )
 
     st.markdown("### Why this matters")
     st.markdown(
         """
-        The station rankings page shows where demand is highest at the station level,
-        while this map adds geographic context by showing how those trips cluster into
-        core travel corridors. Together, these views suggest that expanding or
-        redistributing supply should focus first on the areas where demand is most
-        consistently concentrated.
+        This page adds geographic context to the station-level findings by showing where repeated travel patterns are strongest. 
+        It also suggests that strong trip corridors are shaped by more than just waterfront proximity. While some high-volume routes 
+        do appear near the water, the broader network already includes many waterfront stations, so future expansion decisions would 
+        likely require more location-specific analysis around population density, commuting patterns, tourism activity, transit access, 
+        and land use.
         """
     )
 
@@ -359,72 +351,59 @@ elif page == "Recommendations":
 
     st.markdown(
         """
-        The analysis suggests that Citi Bike demand is not evenly distributed across
-        the network. Ridership appears to be shaped by seasonality, station-level
-        differences in demand, and a stronger concentration of higher-volume stations
-        within the core service area.
+        The analysis suggests that Citi Bike demand is not evenly distributed across the network. Ridership appears to be shaped by 
+        seasonality, station-level differences in demand, and a clear geographic pattern in where higher-volume stations and repeated 
+        trip corridors appear.
         """
     )
-
-    st.markdown("### Recommendations")
-
+    
     st.markdown(
         """
         **1. Focus operations on the higher-volume half of the station network**  
-        The top 50% of start stations account for about 90% of sampled trips, which
-        suggests that most ridership is flowing through a smaller, higher-volume half
-        of the station network. Citi Bike should prioritize these stations for bike
-        availability monitoring, rebalancing, and operational attention.
+        The top 50% of start stations account for about 90% of trips, which suggests that some parts of the network require much closer 
+        operational attention than others. Citi Bike should prioritize these stations for bike availability monitoring, rebalancing, 
+        and day-to-day operational planning.
         """
     )
-
+    
     st.markdown(
         """
         **2. Increase rebalancing and bike availability during warmer months**  
-        Ridership generally rises alongside temperature, which suggests that supply
-        pressure is more likely during spring, summer, and early fall. Seasonal
-        planning should reflect this by increasing bike availability and rebalancing
-        activity during higher-demand periods.
+        Ridership rises during warmer parts of the year and drops during winter, which suggests that supply pressure is seasonal rather 
+        than constant. Citi Bike may benefit from planning more aggressively for bike availability during peak-demand months and using 
+        lower-demand periods for maintenance and servicing.
         """
     )
-
+    
     st.markdown(
         """
         **3. Prioritize supply and inventory management before broad station expansion**  
-        The network appears to have broad geographic coverage already, but demand is
-        not equally intense across that coverage. This suggests that improving bike
-        availability at higher-volume stations is likely to create more immediate
-        operational value than adding large numbers of new stations across the network.
+        The network already covers a broad area, but demand is much stronger in some parts of the system than others. That suggests Citi Bike 
+        may get more immediate value from improving bike availability at higher-volume stations than from adding large numbers of new stations 
+        across the network.
         """
     )
-
+    
     st.markdown(
         """
-        **4. Use edge-of-network high performers as signals for future expansion**  
-        While broad expansion does not appear to be the first priority, some
-        higher-volume stations near the edges of current coverage may point to areas
-        where targeted expansion could make sense in the future.
+        **4. Use stronger-performing edge stations as signals for future follow-up analysis**  
+        Broad expansion does not appear to be the first priority based on this dashboard alone. Still, some higher-volume stations near 
+        the edges of current coverage may point to areas worth studying more closely for future targeted expansion.
         """
     )
-
-    st.markdown("### Limitation")
+    
     st.markdown(
         """
-        One important limitation of this analysis is that it uses trip and demand
-        patterns, but does not include direct data on how many bikes were stocked at
-        each station at a given time. That means the dashboard helps identify likely
-        pressure points, but cannot directly measure stockouts or the exact size of
-        supply gaps.
+        **Limitation**  
+        This dashboard helps identify likely demand pressure points, but it does not include direct bike inventory or stockout data. 
+        That means it can highlight where service pressure is most likely, but it cannot directly confirm where bikes were unavailable in real time.
         """
     )
-
-    st.markdown("### Overall takeaway")
+    
     st.markdown(
         """
-        Overall, the findings support a targeted operating strategy: concentrate
-        rebalancing and bike availability efforts on higher-volume stations, plan
-        for stronger demand during warmer months, and treat station expansion as a
-        selective future lever rather than the first solution.
+        Overall, the findings support a focused operating strategy: concentrate rebalancing and bike availability efforts on the busiest 
+        stations, plan for stronger demand during warmer months, and treat expansion as a selective future lever rather than the first solution.
         """
     )
     recommendations_image = Image.open("CitiBike2.jpg")
